@@ -23,16 +23,21 @@
 					CRM System
 					<div class="easyui-layout" data-options="fit:true ">
 						<div id="" data-options="region:'east'" align="center" style="border :hidden;width: 260px;">
-							<label style="margin: 5px;font-size:16px;">&nbsp;用&nbsp;户：</label><span style="margin: 5px;font-size:16px;"></span>
+							<label style="margin: 5px;font-size:16px;">&nbsp;用户：</label><span style="margin: 5px;font-size:16px;"></span>
 							<br/><br/>
-							<label style="margin: 5px;font-size:16px;">权&nbsp;限：</label><span style="margin: 5px;font-size:16px;"></span>
+							<label style="margin: 5px;font-size:16px;">权限：</label><span style="margin: 5px;font-size:16px;"></span>
 						</div>
 					</div>
 				</div>
 				<div data-options="region:'west',split:true,iconCls:'icon-nav'" title="导航菜单" style="width:252px;">
 					<div class="easyui-accordion" data-options="fit:true,border:false">
+						<div title="营销管理" data-options="iconCls:'icon-yxgl'" style="overflow: auto;">
+							<a href="javascript:addTab('营销机会管理','sfs.jsp','icon-yxjhgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">营销机会管理</a>
+							<a href="javascript:addTab('客户开发计划','customerLossManage.jsp','icon-khkfjh')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户开发计划</a>
+
+						</div>
 						<div title="客户管理" data-options="selected:true,iconCls:'icon-khgl'" style="overflow: auto;">
-							<a href="javascript:addTab('客户信息管理','customerManage.jsp','icon-khxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">客户信息管理</a>
+							<a href="javascript:addTab('客户信息管理','${ctx}/customer/getCustomerInfoPage.action','icon-khxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">客户信息管理</a>
 							<a href="javascript:addTab('客户流失管理','customerLossManage.jsp','icon-khlsgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户流失管理</a>
 
 						</div>
@@ -52,7 +57,7 @@
 						<div title="基础数据管理" data-options="iconCls:'icon-jcsjgl'">
 							<a href="javascript:addTab('数据字典管理','dataDicManage.jsp','icon-sjzdgl')" class="easyui-linkbutton" data-options="iconCls:'icon-sjzdgl'">数据字典管理</a>
 							<a href="javascript:addTab('产品信息查询','productSearch.jsp','icon-cpxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-cpxxgl'">产品信息查询</a>
-							<a href="javascript:addTab('用户信息管理','userManage.jsp','icon-user')" class="easyui-linkbutton" data-options="iconCls:'icon-user'">用户信息管理</a>
+							<a href="javascript:addTab('用户信息管理','${ctx}/user/getUserInfoPage.action','icon-user')" class="easyui-linkbutton" data-options="iconCls:'icon-user'">用户信息管理</a>
 						</div>
 						<div title="信息管理" data-options="iconCls:'icon-item'">
 							<a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-modifyPassword'">修改密码</a>
