@@ -1,5 +1,7 @@
 package com.situ.crm.mapper;
 
+import java.util.List;
+
 import com.situ.crm.bean.Product;
 
 public interface ProductMapper {
@@ -14,4 +16,8 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+	int doDelete(String[] idArray);
+
+	List<Product> pageList(Product searchCondition);
 }

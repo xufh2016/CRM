@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#tt").datagrid({
-			url:'${ctx}/user/pageList.action',
+			url:'${ctx}/product/pageList.action',
 			method:"get",
 			pagination:true,
 			fitColumns:true,
@@ -26,11 +26,12 @@
 			columns:[[
 				{field:'cb',checkbox:true},
 				{field:'id',title:'编号',align:'center'},
-				{field:'name',title:'用户名',align:'center'},
-				{field:'trueName',title:'姓名',align:'center'},
-				{field:'email',title:'邮箱',align:'center'},
-				{field:'phone',title:'电话',align:'center'},
-				{field:'roleName',title:'权限',align:'center'},
+				{field:'name',title:'产品名称',align:'center'},
+				{field:'model',title:'型号',align:'center'},
+				{field:'unit',title:'单位',align:'center'},
+				{field:'price',title:'价格',align:'center'},
+				{field:'stock',title:'库存',align:'center'},
+				{field:'remark',title:'备注',align:'center'},
 			]],
 		});
 		//openDialog();
@@ -39,11 +40,11 @@
 	
 	function doSearch(){
 		$('#tt').datagrid('load',{
-			s_name: $('#s_name').val(),
-			s_truename: $('#s_truename').val(),
-			s_email: $('#s_email').val(),
-			s_phone: $('#s_phone').val(),
-			s_rolename: $('#s_rolename').val(),
+			name: $('#s_name').val(),
+			model: $('#s_model').val(),
+			price: $('#s_price').val(),
+			stock: $('#s_stock').val(),
+			remark: $('#s_remark').val(),
 		});
 	}
 	function doDelete(){
@@ -60,7 +61,7 @@
 			if (r){
 				ids=ids.join(',');
 				$.ajax({
-					url:'${ctx}/user/doDelete.action',
+					url:'${ctx}/product/doDelete.action',
 					data:{ids:ids},
 					dataType:'json',
 					type:'post',
@@ -91,7 +92,7 @@
 		        	text : "保存",
 		        	iconCls : "icon-ok",
 		        	handler : function() {
-		        		var url="${ctx}/user/doAdd.action";
+		        		var url="${ctx}/product/doAdd.action";
 		        		operatingData(url);
 		        	}
 		        },
@@ -115,7 +116,7 @@
 		        	text : "保存",
 		        	iconCls : "icon-ok",
 		        	handler : function() {
-		        		var url="${ctx}/user/doUpdate.action";
+		        		var url="${ctx}/product/doUpdate.action";
 		        		operatingData(url);
 		        	}
 		        },
@@ -137,12 +138,7 @@
 		    onSubmit: function(){  
 		    	//alert("2."+url);
 		        // do some check
-		        if($("#roleName").combobox("getValue")==''){
-		        	$.messager.alert("系统提示","请选择权限");
-			        // return false to prevent submit;    
-		        	return false;
-		        }
-	        	return true;
+		    	return $(this).form('enableValidation').form('validate');
 		    },    
 		    success:function(data){    
 		    	var jsonData = eval('(' + data + ')');  // change the JSON string to javascript object    
@@ -180,23 +176,18 @@
 			<a href="javascript:doUpdate()" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
 			<a href="javascript:doDelete()" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
 		</div>
-		<span>用户名:</span>
+		<span>产品名称:</span>
 		<input id="s_name" class="easyui-textbox">
-		<span>姓名:</span>
-		<input id="s_truename" class="easyui-textbox">
-		<span>邮箱:</span>
-		<input id="s_email" class="easyui-textbox">
-		<span>电话:</span>
-		<input id="s_phone" class="easyui-textbox">
-		<span>权限:</span>
-		<select id="s_rolename" class="easyui-combobox" style="width:100px" panelHeight="auto"
-			editable="false" >
-			<option value="">请选择...</option>
-			<option value="系统管理员">系统管理员</option>
-			<option value="销售主管">销售主管</option>
-			<option value="客户经理">客户经理</option>
-			<option value="高管">高管</option>
-		</select>
+		<span>型号:</span>
+		<input id="s_model" class="easyui-textbox">
+		
+		<span>价格:</span>
+		<input id="s_price" class="easyui-textbox">
+		<span>库存:</span>
+		<input id="s_stock" class="easyui-textbox">
+		<span>备注:</span>
+		<input id="s_remark" class="easyui-textbox">
+		
 		<a  class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">搜索</a>
 	</div>
 	
@@ -206,42 +197,33 @@
 			<input type="hidden" name="id" id="id"/>
 			<table cellspacing="8px">
 				<tr>
-					<td>用户名：</td>
+					<td>产品名称：</td>
 					<td><input type="text" id="name" name="name"
 						class="easyui-validatebox" required="true" /><font color="red">*</font></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td>密码：</td>
-					<td><input type="text" id="password" name="password"
+					<td>型号：</td>
+					<td><input type="text" id="model" name="model"
 						class="easyui-validatebox" required="true" /><font color="red">*</font></td>
 				</tr>
 				<tr>
-					<td>姓名：</td>
-					<td><input type="text" id="trueName" name="trueName"
+					<td>单位：</td>
+					<td><input type="text" id="unit" name="unit"
 						class="easyui-validatebox" required="true" /><font color="red">*</font></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td>邮箱：</td>
-					<td><input type="text" id="email" name="email"
-						class="easyui-validatebox" required="true" validType="email" /><font
+					<td>价格：</td>
+					<td><input type="text" id="price" name="price"
+						class="easyui-validatebox" required="true" /><font
 						color="red">*</font></td>
 				</tr>
 				<tr>
-					<td>联系电话：</td>
-					<td><input type="text" id="phone" name="phone"
+					<td>库存：</td>
+					<td><input type="text" id="stock" name="stock"
 						class="easyui-validatebox" required="true" /><font color="red">*</font></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td>用户角色：</td>
-					<td>
-						<select class="easyui-combobox" id="roleName" 
-							panelHeight="auto" editable="false" name="roleName"
-							style="width: 152">
-								<option selected value="">请选择...</option>
-								<option value="系统管理员">系统管理员</option>
-								<option value="销售主管">销售主管</option>
-								<option value="客户经理">客户经理</option>
-								<option value="高管">高管</option>
-						</select> 
-						<font color="red">*</font>
-					</td>
+					<td>备注：</td>
+					<td><input type="text" id="remark" name="remark"
+						class="easyui-validatebox" required="true"  /><font
+						color="red">*</font></td>
 				</tr>
 			</table>
 		</form>

@@ -19,7 +19,7 @@
 	<body>
 		<div id="panelId" class="easyui-panel" title="客户关系管理系统" data-options="fit:true,iconCls:'icon-man',collapsible:true,minimizable:true,maximizable:true,closable:true">
 			<div class="easyui-layout" data-options="fit:true ">
-				<div data-options="region:'north'" style="height:85px; font-size: x-large;" align="absmiddle">
+				<div data-options="region:'north',split:true" style="height:85px; font-size: x-large;" align="absmiddle">
 					CRM System
 					<div class="easyui-layout" data-options="fit:true ">
 						<div id="" data-options="region:'east'" align="center" style="border :hidden;width: 260px;">
@@ -56,7 +56,7 @@
 						</div>
 						<div title="基础数据管理" data-options="iconCls:'icon-jcsjgl'">
 							<a href="javascript:addTab('数据字典管理','dataDicManage.jsp','icon-sjzdgl')" class="easyui-linkbutton" data-options="iconCls:'icon-sjzdgl'">数据字典管理</a>
-							<a href="javascript:addTab('产品信息查询','productSearch.jsp','icon-cpxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-cpxxgl'">产品信息查询</a>
+							<a href="javascript:addTab('产品信息查询','${ctx}/product/getProductInfoPage.action','icon-cpxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-cpxxgl'">产品信息查询</a>
 							<a href="javascript:addTab('用户信息管理','${ctx}/user/getUserInfoPage.action','icon-user')" class="easyui-linkbutton" data-options="iconCls:'icon-user'">用户信息管理</a>
 						</div>
 						<div title="信息管理" data-options="iconCls:'icon-item'">
