@@ -85,7 +85,7 @@
 	function openDialog(){
 		//alert("1.openDialog()")
 		$("#dialogId").dialog({
-			title:"添加用户",
+			title:"添加商品",
 			closed : true,
 		    buttons : [
 		        {
@@ -109,7 +109,7 @@
 	function openUpdateDialog(){
 		//alert("1.openDialog()")
 		$("#dialogId").dialog({
-			title:"添加用户",
+			title:"更新商品",
 			closed : true,
 		    buttons : [
 		        {

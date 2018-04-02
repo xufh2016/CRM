@@ -1,5 +1,7 @@
 package com.situ.crm.mapper;
 
+import java.util.List;
+
 import com.situ.crm.bean.CusDevPlan;
 
 public interface CusDevPlanMapper {
@@ -14,4 +16,6 @@ public interface CusDevPlanMapper {
     int updateByPrimaryKeySelective(CusDevPlan record);
 
     int updateByPrimaryKey(CusDevPlan record);
+
+	
 }

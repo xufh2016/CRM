@@ -1,7 +1,10 @@
 package com.situ.crm.service.impl;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +69,26 @@ public class UserServiceImpl implements IUserService {
 			return ServerResponse.createSuccess("修改成功");
 		}
 		return ServerResponse.createError("修改失败");
+	}
+	@Override
+	public List<Map<String, String>> getAssignMan() {
+		// TODO Auto-generated method stub
+		List<Map<String, String>> mapList = new ArrayList<>();
+		List<String> manList = userMapper.selectAssignMan();
+		for (String assignMan : manList) {
+			Map<String, String> map = new HashMap<>();
+			map.put("assignMan", assignMan);
+			mapList.add(map);
+		}
+		return mapList;
+	}
+
+	@Override
+	public ServerResponse checkLoginParam(String name,String password) {
+		// TODO Auto-generated method stub
+		User user=userMapper.selectUserExist(name,password);
+		if(user!=null)
+			return ServerResponse.createSuccess("登录成功",user);
+		return ServerResponse.createError("登录失败");
 	}
 }

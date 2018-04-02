@@ -1,5 +1,8 @@
 package com.situ.crm.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.situ.crm.bean.User;
 import com.situ.crm.common.DataGridResponse;
 import com.situ.crm.common.ServerResponse;
@@ -21,4 +24,8 @@ public interface IUserService {
 	ServerResponse doAdd(User user);
 
 	ServerResponse doUpdate(User user);
+
+	List<Map<String, String>> getAssignMan();
+
+	ServerResponse checkLoginParam(String name,String password);
 }

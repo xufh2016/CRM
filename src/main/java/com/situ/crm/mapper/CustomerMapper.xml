@@ -28,9 +28,11 @@
 		</constructor>
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, num, name, region, manager_name, level, satisfy, credit, address,
+		id, num, name, region, manager_name, level, satisfy,
+		credit, address,
 		post_code,
-		phone, fax, web_site, licence_no, legal_person, bankroll, turnover,
+		phone, fax, web_site, licence_no,
+		legal_person, bankroll, turnover,
 		bank_name, bank_account,
 		local_tax_no, national_tax_no, status
 	</sql>
@@ -42,27 +44,35 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from customer
+		delete from
+		customer
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.situ.crm.bean.Customer">
-		insert into customer (id, num, name,
+		insert into customer (id, num,
+		name,
 		region, manager_name, level,
 		satisfy, credit, address,
-		post_code, phone, fax,
+		post_code,
+		phone, fax,
 		web_site, licence_no, legal_person,
-		bankroll, turnover, bank_name,
+		bankroll, turnover,
+		bank_name,
 		bank_account, local_tax_no, national_tax_no,
 		status)
-		values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
-		#{region,jdbcType=VARCHAR}, #{managerName,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR},
+		#{region,jdbcType=VARCHAR},
+		#{managerName,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR},
 		#{satisfy,jdbcType=VARCHAR}, #{credit,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR},
-		#{postCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR},
+		#{postCode,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR},
 		#{webSite,jdbcType=VARCHAR}, #{licenceNo,jdbcType=VARCHAR},
 		#{legalPerson,jdbcType=VARCHAR},
-		#{bankroll,jdbcType=VARCHAR}, #{turnover,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
+		#{bankroll,jdbcType=VARCHAR},
+		#{turnover,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
 		#{bankAccount,jdbcType=VARCHAR}, #{localTaxNo,jdbcType=VARCHAR},
 		#{nationalTaxNo,jdbcType=VARCHAR},
 		#{status,jdbcType=INTEGER})
@@ -280,23 +290,33 @@
 		set num = #{num,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
 		region = #{region,jdbcType=VARCHAR},
-		manager_name = #{managerName,jdbcType=VARCHAR},
+		manager_name =
+		#{managerName,jdbcType=VARCHAR},
 		level = #{level,jdbcType=VARCHAR},
 		satisfy = #{satisfy,jdbcType=VARCHAR},
-		credit = #{credit,jdbcType=VARCHAR},
+		credit =
+		#{credit,jdbcType=VARCHAR},
 		address = #{address,jdbcType=VARCHAR},
 		post_code = #{postCode,jdbcType=VARCHAR},
-		phone = #{phone,jdbcType=VARCHAR},
+		phone =
+		#{phone,jdbcType=VARCHAR},
 		fax = #{fax,jdbcType=VARCHAR},
-		web_site = #{webSite,jdbcType=VARCHAR},
-		licence_no = #{licenceNo,jdbcType=VARCHAR},
-		legal_person = #{legalPerson,jdbcType=VARCHAR},
-		bankroll = #{bankroll,jdbcType=VARCHAR},
+		web_site =
+		#{webSite,jdbcType=VARCHAR},
+		licence_no =
+		#{licenceNo,jdbcType=VARCHAR},
+		legal_person =
+		#{legalPerson,jdbcType=VARCHAR},
+		bankroll =
+		#{bankroll,jdbcType=VARCHAR},
 		turnover = #{turnover,jdbcType=VARCHAR},
 		bank_name = #{bankName,jdbcType=VARCHAR},
-		bank_account = #{bankAccount,jdbcType=VARCHAR},
-		local_tax_no = #{localTaxNo,jdbcType=VARCHAR},
-		national_tax_no = #{nationalTaxNo,jdbcType=VARCHAR},
+		bank_account =
+		#{bankAccount,jdbcType=VARCHAR},
+		local_tax_no =
+		#{localTaxNo,jdbcType=VARCHAR},
+		national_tax_no =
+		#{nationalTaxNo,jdbcType=VARCHAR},
 		status = #{status,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -305,5 +325,52 @@
 		select
 		<include refid="Base_Column_List" />
 		from customer
+	</select>
+	<select id="getSatisfy" resultType="string">
+		select DISTINCT satisfy from
+		customer order by satisfy
+	</select>
+	<select id="getCredit" resultType="string">
+		select DISTINCT credit from
+		customer order by credit
+	</select>
+	<select id="getLevel" resultType="string">
+		select DISTINCT level from
+		customer order by level
+	</select>
+	<select id="getManagerName" resultType="string">
+		select DISTINCT
+		manager_name from customer
+	</select>
+	<select id="getRegion" resultType="string">
+		select DISTINCT region from
+		customer
+	</select>
+
+	<delete id="doDelete">
+		delete from customer
+		<where>
+			id in
+			<foreach collection="array" item="id" open="(" close=")"
+				separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+	<select id="selectBeingLossCustomer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM customer AS c
+		WHERE id NOT IN
+		(SELECT customer_id
+		FROM
+		customer_order
+		WHERE DATE_ADD(order_date, INTERVAL 6 MONTH) > NOW())
+		AND c.status=0;
+	</select>
+	<select id="selectAllCustomerContribution" resultType="com.situ.crm.vo.CustomerContribution">
+		SELECT c.name as customerName,SUM(oi.sum) as totalPrice FROM customer AS c INNER JOIN
+		customer_order AS co ON c.id=co.customer_id RIGHT JOIN order_item AS
+		oi ON co.id=oi.order_id GROUP BY oi.order_id
 	</select>
 </mapper>

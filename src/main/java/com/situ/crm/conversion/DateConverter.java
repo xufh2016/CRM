@@ -19,7 +19,7 @@ public class DateConverter implements Converter<String, Date> {
 	public Date convert(String source) {
 		// TODO Auto-generated method stub
 		if (null != source && "" != source) {
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				return format.parse(source);
 			} catch (ParseException e) {

@@ -10,13 +10,11 @@
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- <context-param>
-		<param-name>webAppRootKey</param-name>
-		<param-value>webapp.root.one</param-value>
-	</context-param> -->
+	<!-- <context-param> <param-name>webAppRootKey</param-name> <param-value>webapp.root.one</param-value> 
+		</context-param> -->
 
 	<!-- 配置监听器加载spring -->
 	<listener>
@@ -43,7 +41,6 @@
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
-
 	<!-- 配置SpringMVC 后台 -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
@@ -59,5 +56,15 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+
+	<!-- 配置登录页面的拦截器 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.situ.crm.common.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

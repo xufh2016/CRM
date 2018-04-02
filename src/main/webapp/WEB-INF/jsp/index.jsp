@@ -32,30 +32,30 @@
 				<div data-options="region:'west',split:true,iconCls:'icon-nav'" title="导航菜单" style="width:252px;">
 					<div class="easyui-accordion" data-options="fit:true,border:false">
 						<div title="营销管理" data-options="iconCls:'icon-yxgl'" style="overflow: auto;">
-							<a href="javascript:addTab('营销机会管理','sfs.jsp','icon-yxjhgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">营销机会管理</a>
-							<a href="javascript:addTab('客户开发计划','customerLossManage.jsp','icon-khkfjh')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户开发计划</a>
+							<a href="javascript:addTab('营销机会管理','${ctx}/salechance/getSaleChanceInfoPage.action','icon-yxjhgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">营销机会管理</a>
+							<a href="javascript:addTab('客户开发计划','${ctx}/salechance/getCustomerDevPlanPage.action','icon-khkfjh')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户开发计划</a>
 
 						</div>
 						<div title="客户管理" data-options="selected:true,iconCls:'icon-khgl'" style="overflow: auto;">
 							<a href="javascript:addTab('客户信息管理','${ctx}/customer/getCustomerInfoPage.action','icon-khxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khxxgl'">客户信息管理</a>
-							<a href="javascript:addTab('客户流失管理','customerLossManage.jsp','icon-khlsgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户流失管理</a>
+							<a href="javascript:addTab('客户流失管理','${ctx}/customerloss/getCustomerLossPage.action','icon-khlsgl')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsgl'">客户流失管理</a>
 
 						</div>
 						<div title="服务管理" data-options="iconCls:'icon-fwgl'">
-							<a href="javascript:addTab('服务创建','customerServiceCreate.jsp','icon-fwcj')" class="easyui-linkbutton" data-options="iconCls:'icon-fwcj'">服务创建</a>
-							<a href="javascript:addTab('服务分配','customerServiceAssign.jsp','icon-fwfp')" class="easyui-linkbutton" data-options="iconCls:'icon-fwfp'">服务分配</a>
-							<a href="javascript:addTab('服务处理','customerServiceProce.jsp','icon-fwcl')" class="easyui-linkbutton" data-options="iconCls:'icon-fwcl'">服务处理</a>
-							<a href="javascript:addTab('服务反馈','customerServiceFeedback.jsp','icon-fwfk')" class="easyui-linkbutton" data-options="iconCls:'icon-fwfk'">服务反馈</a>
-							<a href="javascript:addTab('服务归档','customerServiceFile.jsp','icon-fwgd')" class="easyui-linkbutton" data-options="iconCls:'icon-fwgd'">服务归档</a>
+							<a href="javascript:addTab('服务创建','${ctx}/customerservice/getCustomerServicePage.action','icon-fwcj')" class="easyui-linkbutton" data-options="iconCls:'icon-fwcj'">服务创建</a>
+							<a href="javascript:addTab('服务分配','${ctx}/customerservice/getServiceAssignmentPage.action','icon-fwfp')" class="easyui-linkbutton" data-options="iconCls:'icon-fwfp'">服务分配</a>
+							<a href="javascript:addTab('服务处理','${ctx}/customerservice/getServiceHandlingPage.action','icon-fwcl')" class="easyui-linkbutton" data-options="iconCls:'icon-fwcl'">服务处理</a>
+							<a href="javascript:addTab('服务反馈','${ctx}/customerservice/getServiceResponsePage.action','icon-fwfk')" class="easyui-linkbutton" data-options="iconCls:'icon-fwfk'">服务反馈</a>
+							<a href="javascript:addTab('服务归档','${ctx}/customerservice/getServiceFillingPage.action','icon-fwgd')" class="easyui-linkbutton" data-options="iconCls:'icon-fwgd'">服务归档</a>
 						</div>
 						<div title="统计报表" data-options="iconCls:'icon-tjbb'">
-							<a href="javascript:addTab('客户贡献分析','khgxfx.jsp','icon-khgxfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khgxfx'">客户贡献分析</a>
+							<a href="javascript:addTab('客户贡献分析','${ctx}/count/getCustomerContributionPage.action','icon-khgxfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khgxfx'">客户贡献分析</a>
 							<a href="javascript:addTab('客户构成分析','khgcfx.jsp','icon-khgcfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khgcfx'">客户构成分析</a>
 							<a href="javascript:addTab('客户服务分析','khfwfx.jsp','icon-khfwfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khfwfx'">客户服务分析</a>
-							<a href="javascript:addTab('客户流失分析','khlsfx.jsp','icon-khlsfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsfx'">客户流失分析</a>
+							<a href="javascript:addTab('客户流失分析','${ctx}/customerloss/getCustomerLossAnalysisPage.action','icon-khlsfx')" class="easyui-linkbutton" data-options="iconCls:'icon-khlsfx'">客户流失分析</a>
 						</div>
 						<div title="基础数据管理" data-options="iconCls:'icon-jcsjgl'">
-							<a href="javascript:addTab('数据字典管理','dataDicManage.jsp','icon-sjzdgl')" class="easyui-linkbutton" data-options="iconCls:'icon-sjzdgl'">数据字典管理</a>
+							<a href="javascript:addTab('数据字典管理','${ctx}/datadic/getDataDicInfoPage.action','icon-sjzdgl')" class="easyui-linkbutton" data-options="iconCls:'icon-sjzdgl'">数据字典管理</a>
 							<a href="javascript:addTab('产品信息查询','${ctx}/product/getProductInfoPage.action','icon-cpxxgl')" class="easyui-linkbutton" data-options="iconCls:'icon-cpxxgl'">产品信息查询</a>
 							<a href="javascript:addTab('用户信息管理','${ctx}/user/getUserInfoPage.action','icon-user')" class="easyui-linkbutton" data-options="iconCls:'icon-user'">用户信息管理</a>
 						</div>

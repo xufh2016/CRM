@@ -92,4 +92,6 @@
       exe_affect = #{exeAffect,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+ 
 </mapper>

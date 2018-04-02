@@ -2,6 +2,8 @@ package com.situ.crm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.situ.crm.bean.User;
 import com.situ.crm.vo.SearchCondition;
 
@@ -21,5 +23,9 @@ public interface UserMapper {
 	List<User> pageList(SearchCondition searchCondition);
 
 	int doDelete(String[] idArray);
+
+	List<String> selectAssignMan();
+
+	User selectUserExist(@Param(value="name")String name,@Param(value="password")String password);
 
 }

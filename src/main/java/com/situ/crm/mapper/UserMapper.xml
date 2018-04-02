@@ -26,24 +26,28 @@
 		delete from user
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	
+
 	<delete id="doDelete">
 		delete from user
 		<where>
-			id in 
-			<foreach collection="array" item="id" open="(" close=")" separator=",">
+			id in
+			<foreach collection="array" item="id" open="(" close=")"
+				separator=",">
 				#{id}
 			</foreach>
 		</where>
 	</delete>
-	
+
 	<insert id="insert" parameterType="com.situ.crm.bean.User">
-		insert into user (id, name, password,
+		insert into user (id, name,
+		password,
 		true_name, email, phone,
 		role_name)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{trueName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{trueName,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
 		#{roleName,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.situ.crm.bean.User">
@@ -121,15 +125,18 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.situ.crm.bean.User">
 		update user
-		set name = #{name,jdbcType=VARCHAR},
-		password = #{password,jdbcType=VARCHAR},
+		set
+		name = #{name,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
 		true_name = #{trueName,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
 		role_name = #{roleName,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
-	<select id="pageList" resultMap="BaseResultMap" parameterType="SearchCondition">
+	<select id="pageList" resultMap="BaseResultMap" parameterType="salechance">
 		select
 		<include refid="Base_Column_List" />
 		from user
@@ -149,9 +156,21 @@
 			<if test="s_rolename!=null and s_rolename!='' "><!-- sc_name前段传过来的属性值 -->
 				and role_name like concat('%',#{s_rolename},'%')
 			</if>
-			
-
 		</where>
+	</select>
+
+	<select id="selectAssignMan" resultType="string">
+		select true_name
+		from
+		user
+		where role_name="客户经理"
+	</select>
+	<select id="selectUserExist" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where name=#{name}
+		and password=#{password}
 	</select>
 
 </mapper>

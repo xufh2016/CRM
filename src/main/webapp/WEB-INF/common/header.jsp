@@ -24,5 +24,7 @@
 	type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" src="${ctx}/static/common/js/util.js"></script>
+<script type="text/javascript" src="${ctx}/static/lib/jquery-easyui-edatagrid/jquery-easyui-edatagrid/jquery.edatagrid.js"></script>
+<script type="text/javascript" src="${ctx}/static/lib/echarts/echarts.js"></script>
 
 

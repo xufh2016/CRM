@@ -1,5 +1,7 @@
 package com.situ.crm.mapper;
 
+import java.util.List;
+
 import com.situ.crm.bean.CustomerLinkman;
 
 public interface CustomerLinkmanMapper {
@@ -14,4 +16,10 @@ public interface CustomerLinkmanMapper {
     int updateByPrimaryKeySelective(CustomerLinkman record);
 
     int updateByPrimaryKey(CustomerLinkman record);
+
+	List<CustomerLinkman> selectLinkMenByCusId(Integer customerId);
+
+	int updateLinkmanInfoByCusId(CustomerLinkman customerId);
+
+	
 }
